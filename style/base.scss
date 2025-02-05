@@ -1,4 +1,11 @@
 @import "variables";
+
+@media (max-width: 375px) {
+  body {
+    zoom: 0.8;
+  }
+}
+
 * {
   box-sizing: border-box;
 }

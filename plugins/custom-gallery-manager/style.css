@@ -1,0 +1,13 @@
+#cgm_gallery_images_preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+#cgm_gallery_images_preview .cgm-gallery-image {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+}

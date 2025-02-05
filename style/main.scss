@@ -22,6 +22,10 @@ section {
   width: 100%;
   margin: 0 auto;
   padding: 0 30px;
+
+  @include mobile {
+    padding: 0 20px;
+  }
 }
 
 .header {
@@ -41,6 +45,15 @@ section {
 
   nav {
     height: 100%;
+
+    @include mobile {
+
+      &.active {
+        ul {
+          clip-path: inset(0 0 0 0);
+        }
+      }
+    }
 
     ul {
       display: flex;
@@ -74,12 +87,104 @@ section {
           }
         }
       }
+
+      @include mobile {
+        position: fixed;
+        height: 100dvh;
+        width: 100%;
+        flex-direction: column;
+        left: 0;
+        top: $height-header;
+        transition: 0.3s;
+        padding: 30px;
+        align-items: start;
+        clip-path: inset(0 100% 0 0);
+
+        &::before {
+          @include pseudo-absolute {
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 100%;
+            background-color: $color_bg;
+            z-index: 1;
+          }
+        }
+
+        &::after {
+          @include pseudo-absolute {
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100%;
+            background-color: transparentize($color_primary, 0.5);
+            z-index: -1;
+          }
+        }
+
+        li {
+          height: auto;
+          z-index: 2;
+        }
+      }
     }
   }
 
   .menu-btn {
     display: none;
+
+    @include mobile {
+      display: block;
+      position: relative;
+      width: 30px;
+      height: 30px;
+
+
+      span, span::before, span::after {
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background-color: $color_primary;
+        @include pseudo-absolute;
+        top: 8px;
+        right: 0;
+        transition: 0.2s;
+      }
+
+      span {
+        &::before {
+          top: -8px;
+          width: 80%;
+        }
+
+        &::after {
+          top: 8px;
+          width: 50%;
+        }
+      }
+
+      &.active {
+        span {
+          background-color: transparent;
+
+          &::before {
+            transform: rotate(-45deg);
+            width: 100%;
+            top: 0;
+          }
+
+          &::after {
+            transform: rotate(45deg);
+            width: 100%;
+            top: 0;
+          }
+
+
+        }
+      }
+    }
   }
+
 }
 
 .header ul {
@@ -109,6 +214,10 @@ section.land {
     height: 100%;
     padding-bottom: 100px;
 
+    @include mobile {
+      padding-bottom: 30px;
+    }
+
     h1 {
       font-size: 60px;
       color: $color_text-accent;
@@ -118,6 +227,19 @@ section.land {
       + p {
         font-size: 18px;
         margin: 20px 0 20px;
+
+        @include mobile {
+          font-size: 16px;
+          margin: 10px 0 10px;
+        }
+      }
+
+      @include tablet {
+        font-size: 42px;
+      }
+
+      @include mobile {
+        font-size: 30px;
       }
     }
 
@@ -130,11 +252,17 @@ section.land {
     > div:first-child {
       flex-direction: column;
       justify-content: end;
+      @include mobile {
+        width: 70%;
+      }
     }
 
     > div:last-child {
       justify-content: center;
       align-items: center;
+      @include mobile {
+        width: 30%;
+      }
     }
   }
 
@@ -150,7 +278,6 @@ section.land {
     max-height: 80dvh;
     display: flex;
     background-color: transparentize($color_bg, 0.3);
-    //overflow: hidden;
     z-index: 1;
 
     &::before {
@@ -181,6 +308,10 @@ section.land {
       object-fit: cover;
       object-position: center;
       z-index: 1;
+
+      @include tablet {
+        height: 300px;
+      }
     }
   }
 }
@@ -222,10 +353,11 @@ section.advantages {
           @include pseudo-absolute {
             bottom: -100%;
             right: 10px;
-            width: 60px;
-            height: 60px;
-            background: var(--bg-icon);
+            width: 80px;
+            height: 80px;
+            background: no-repeat center / contain var(--bg-icon);
             transition: all 0.2s;
+            filter: opacity(0.3) brightness(0);
           }
         }
 
@@ -242,6 +374,19 @@ section.advantages {
           }
         }
       }
+
+      @include tablet {
+        flex-direction: column;
+
+        .item {
+          padding: 20px;
+          min-height: auto;
+
+          h4 {
+            margin: 10px 0;
+          }
+        }
+      }
     }
   }
 }
@@ -251,6 +396,11 @@ section.about {
   background-image: linear-gradient(110deg, $color_primary 30%, $color_bg 0%);
   padding-bottom: 100px;
 
+  @include mobile {
+    background-image: unset;
+    margin-top: 0;
+  }
+
   .container {
     display: flex;
     gap: $gap-lg;
@@ -259,6 +409,10 @@ section.about {
       max-width: 350px;
       height: 575px;
       flex-shrink: 0;
+
+      @include mobile {
+        display: none;
+      }
 
       img {
         width: 100%;
@@ -283,6 +437,15 @@ section.about {
 }
 
 section.gallery {
+
+  @include mobile {
+    padding-top: 0;
+
+    > div> div.flex {
+      padding: 0 20px;
+    }
+  }
+
   h3, h4 {
     margin: 0;
   }
@@ -303,6 +466,11 @@ section.gallery {
     position: relative;
     display: flex;
     overflow: hidden;
+
+    @include mobile {
+      height: auto;
+      flex-direction: column;
+    }
 
     > img {
       position: absolute;
@@ -386,6 +554,17 @@ section.book {
 
   .container {
     form {
+      display: flex;
+      gap: $gap-md;
+
+      @include mobile {
+        flex-direction: column;
+      }
+
+      p {
+        margin: 0;
+      }
+
       input {
         width: 100%;
       }
@@ -395,12 +574,15 @@ section.book {
 
 .footer {
   padding: 30px 0;
-  //background: no-repeat center / cover url("../assets/img/tattoo-artist-makes-a-tattoo.jpg");
 
   .container {
     display: flex;
     gap: $gap-md;
     justify-content: space-between;
+
+    @include mobile {
+      flex-direction: column;
+    }
 
     ul {
       list-style: none;

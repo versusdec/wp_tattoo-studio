@@ -1,3 +1,8 @@
+@media (max-width: 375px) {
+  body {
+    zoom: 0.8;
+  }
+}
 * {
   box-sizing: border-box;
 }
@@ -99,7 +104,7 @@ h3 {
   stroke: #FF005C;
 }
 
-button, .btn {
+button, .btn, input[type=submit] {
   padding: 20px 40px;
   font-size: 16px;
   color: #FFFFFF;
@@ -112,16 +117,22 @@ button, .btn {
   text-shadow: 1px 1px 1px #000000;
   display: inline-flex;
   cursor: pointer;
+  white-space: nowrap;
 }
-button:hover, .btn:hover {
+@media screen and (max-width: 768px) {
+  button, .btn, input[type=submit] {
+    padding: 10px 15px;
+  }
+}
+button:hover, .btn:hover, input[type=submit]:hover {
   border-color: #FFFFFF;
 }
-button.secondary, .btn.secondary {
+button.secondary, .btn.secondary, input[type=submit].secondary {
   background-color: transparent;
   color: #FF005C;
   border-color: #FF005C;
 }
-button.secondary::before, .btn.secondary::before {
+button.secondary::before, .btn.secondary::before, input[type=submit].secondary::before {
   content: "";
   display: block;
   position: absolute;
@@ -133,10 +144,10 @@ button.secondary::before, .btn.secondary::before {
   transition: 0.2s;
   z-index: -1;
 }
-button.secondary:hover, .btn.secondary:hover {
+button.secondary:hover, .btn.secondary:hover, input[type=submit].secondary:hover {
   color: #FFFFFF;
 }
-button.secondary:hover::before, .btn.secondary:hover::before {
+button.secondary:hover::before, .btn.secondary:hover::before, input[type=submit].secondary:hover::before {
   width: 100%;
 }
 
@@ -312,6 +323,11 @@ section {
   margin: 0 auto;
   padding: 0 30px;
 }
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+}
 
 .header {
   height: 60px;
@@ -329,6 +345,11 @@ section {
 }
 .header nav {
   height: 100%;
+}
+@media screen and (max-width: 768px) {
+  .header nav.active ul {
+    clip-path: inset(0 0 0 0);
+  }
 }
 .header nav ul {
   display: flex;
@@ -360,8 +381,89 @@ section {
 .header nav ul li a:hover::before {
   width: 100%;
 }
+@media screen and (max-width: 768px) {
+  .header nav ul {
+    position: fixed;
+    height: 100dvh;
+    width: 100%;
+    flex-direction: column;
+    left: 0;
+    top: 60px;
+    transition: 0.3s;
+    padding: 30px;
+    align-items: start;
+    clip-path: inset(0 100% 0 0);
+  }
+  .header nav ul::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #000000;
+    z-index: 1;
+  }
+  .header nav ul::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    background-color: rgba(255, 0, 92, 0.5);
+    z-index: -1;
+  }
+  .header nav ul li {
+    height: auto;
+    z-index: 2;
+  }
+}
 .header .menu-btn {
   display: none;
+}
+@media screen and (max-width: 768px) {
+  .header .menu-btn {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 30px;
+  }
+  .header .menu-btn span, .header .menu-btn span::before, .header .menu-btn span::after {
+    width: 100%;
+    height: 3px;
+    border-radius: 2px;
+    background-color: #FF005C;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 8px;
+    right: 0;
+    transition: 0.2s;
+  }
+  .header .menu-btn span::before {
+    top: -8px;
+    width: 80%;
+  }
+  .header .menu-btn span::after {
+    top: 8px;
+    width: 50%;
+  }
+  .header .menu-btn.active span {
+    background-color: transparent;
+  }
+  .header .menu-btn.active span::before {
+    transform: rotate(-45deg);
+    width: 100%;
+    top: 0;
+  }
+  .header .menu-btn.active span::after {
+    transform: rotate(45deg);
+    width: 100%;
+    top: 0;
+  }
 }
 
 .header ul {
@@ -391,6 +493,11 @@ section.land .container {
   height: 100%;
   padding-bottom: 100px;
 }
+@media screen and (max-width: 768px) {
+  section.land .container {
+    padding-bottom: 30px;
+  }
+}
 section.land .container h1 {
   font-size: 60px;
   color: #FFFFFF;
@@ -401,6 +508,22 @@ section.land .container h1 + p {
   font-size: 18px;
   margin: 20px 0 20px;
 }
+@media screen and (max-width: 768px) {
+  section.land .container h1 + p {
+    font-size: 16px;
+    margin: 10px 0 10px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  section.land .container h1 {
+    font-size: 42px;
+  }
+}
+@media screen and (max-width: 768px) {
+  section.land .container h1 {
+    font-size: 30px;
+  }
+}
 section.land .container > div {
   height: 100%;
   display: flex;
@@ -410,9 +533,19 @@ section.land .container > div:first-child {
   flex-direction: column;
   justify-content: end;
 }
+@media screen and (max-width: 768px) {
+  section.land .container > div:first-child {
+    width: 70%;
+  }
+}
 section.land .container > div:last-child {
   justify-content: center;
   align-items: center;
+}
+@media screen and (max-width: 768px) {
+  section.land .container > div:last-child {
+    width: 30%;
+  }
 }
 section.land .video {
   position: fixed;
@@ -455,6 +588,11 @@ section.land .video video {
   object-position: center;
   z-index: 1;
 }
+@media screen and (max-width: 1000px) {
+  section.land .video video {
+    height: 300px;
+  }
+}
 
 section.advantages {
   box-shadow: #000000 0 0 20px 14px;
@@ -491,10 +629,11 @@ section.advantages .container .list .item::after {
   position: absolute;
   bottom: -100%;
   right: 10px;
-  width: 60px;
-  height: 60px;
-  background: var(--bg-icon);
+  width: 80px;
+  height: 80px;
+  background: no-repeat center/contain var(--bg-icon);
   transition: all 0.2s;
+  filter: opacity(0.3) brightness(0);
 }
 section.advantages .container .list .item:hover {
   background-color: #FF005C;
@@ -506,11 +645,29 @@ section.advantages .container .list .item:hover::after {
 section.advantages .container .list .item:hover p {
   color: #FFFFFF;
 }
+@media screen and (max-width: 1000px) {
+  section.advantages .container .list {
+    flex-direction: column;
+  }
+  section.advantages .container .list .item {
+    padding: 20px;
+    min-height: auto;
+  }
+  section.advantages .container .list .item h4 {
+    margin: 10px 0;
+  }
+}
 
 section.about {
   margin-top: 100px;
   background-image: linear-gradient(110deg, #FF005C 30%, #000000 0%);
   padding-bottom: 100px;
+}
+@media screen and (max-width: 768px) {
+  section.about {
+    background-image: unset;
+    margin-top: 0;
+  }
 }
 section.about .container {
   display: flex;
@@ -520,6 +677,11 @@ section.about .container > div:first-child {
   max-width: 350px;
   height: 575px;
   flex-shrink: 0;
+}
+@media screen and (max-width: 768px) {
+  section.about .container > div:first-child {
+    display: none;
+  }
 }
 section.about .container > div:first-child img {
   width: 100%;
@@ -537,6 +699,14 @@ section.about .container .signature img {
   max-width: 200px;
 }
 
+@media screen and (max-width: 768px) {
+  section.gallery {
+    padding-top: 0;
+  }
+  section.gallery > div > div.flex {
+    padding: 0 20px;
+  }
+}
 section.gallery h3, section.gallery h4 {
   margin: 0;
 }
@@ -554,6 +724,12 @@ section.gallery .g-list {
   position: relative;
   display: flex;
   overflow: hidden;
+}
+@media screen and (max-width: 768px) {
+  section.gallery .g-list {
+    height: auto;
+    flex-direction: column;
+  }
 }
 section.gallery .g-list > img {
   position: absolute;
@@ -622,6 +798,18 @@ section.gallery .images {
 section.book {
   padding-bottom: 100px;
 }
+section.book .container form {
+  display: flex;
+  gap: 20px;
+}
+@media screen and (max-width: 768px) {
+  section.book .container form {
+    flex-direction: column;
+  }
+}
+section.book .container form p {
+  margin: 0;
+}
 section.book .container form input {
   width: 100%;
 }
@@ -633,6 +821,11 @@ section.book .container form input {
   display: flex;
   gap: 20px;
   justify-content: space-between;
+}
+@media screen and (max-width: 768px) {
+  .footer .container {
+    flex-direction: column;
+  }
 }
 .footer .container ul {
   list-style: none;

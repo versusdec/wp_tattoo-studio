@@ -11,4 +11,10 @@ $(function () {
   if($(['data-fancybox']).length && $('#gallery .images img').length) {
     Fancybox.bind('[data-fancybox]');
   }
+  
+  if($('.menu-btn').length) {
+    $('.menu-btn').on('click', function() {
+      $([this, '#header nav']).toggleClass('active')
+    })
+  }
 })
