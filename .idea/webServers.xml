@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="0ee573e8-8293-4182-a5b2-d3bf9272b1e2" name="TattooStudio" url="http://tattoostudio.infinityfreeapp.com">
+        <fileTransfer rootFolder="/htdocs/wp-content/themes/tattoostudio" host="ftpupload.net" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

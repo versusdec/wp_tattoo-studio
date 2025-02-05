@@ -1,0 +1,63 @@
+@import "variables";
+* {
+  box-sizing: border-box;
+}
+
+button {
+  all: unset;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: $color-bg;
+  color: $color_text;
+  font-size: 16px;
+  font-family: $font;
+  scroll-behavior: smooth;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.gap {
+  &-sm {
+    gap: $gap-sm;
+  }
+  &-md {
+    gap: $gap-md;
+  }
+  &-lg {
+    gap: $gap-lg;
+  }
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.direction-column {
+  flex-direction: column;
+}
+
+mark {
+  background-color: transparent;
+  color: $color_primary;
+}
+
+h3 {
+  font-size: 45px;
+  font-weight: 600;
+  color: $color-text-accent;
+  text-transform: uppercase;
+}

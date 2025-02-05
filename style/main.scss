@@ -1,0 +1,415 @@
+@import "base";
+@import "variables";
+@import "components";
+@import "mixins";
+@import "animations";
+
+a {
+  color: $color_primary;
+  text-decoration: none;
+
+  &:not(.btn, button):hover {
+    opacity: 0.9;
+  }
+}
+
+section {
+  padding-top: 100px;
+}
+
+.container {
+  max-width: $width-desktop;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.header {
+  height: $height-header;
+  box-shadow: $color_bg 0 0 4px;
+  position: sticky;
+  top: 0;
+  background-color: $color_bg;
+  z-index: 20;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  nav {
+    height: 100%;
+
+    ul {
+      display: flex;
+      align-items: center;
+      gap: $gap-lg;
+      height: 100%;
+
+      li {
+        height: 100%;
+        display: flex;
+
+        a {
+          height: 100%;
+          display: block;
+          align-content: center;
+          position: relative;
+
+          &::before {
+            @include pseudo-absolute {
+              left: 0;
+              bottom: 0;
+              width: 0;
+              height: 2px;
+              background-color: $color_primary;
+              transition: all 0.3s;
+            }
+          }
+
+          &:hover::before {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .menu-btn {
+    display: none;
+  }
+}
+
+.header ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+section.land {
+  position: relative;
+  height: calc(100dvh - $height-header);
+  z-index: 19;
+
+  .bg {
+    @include pseudo-absolute {
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      filter: brightness(0.5);
+      z-index: -1;
+    }
+  }
+
+  .container {
+    display: flex;
+    height: 100%;
+    padding-bottom: 100px;
+
+    h1 {
+      font-size: 60px;
+      color: $color_text-accent;
+      font-weight: 600;
+      margin: 0;
+
+      + p {
+        font-size: 18px;
+        margin: 20px 0 20px;
+      }
+    }
+
+    > div {
+      height: 100%;
+      display: flex;
+      width: 50%;
+    }
+
+    > div:first-child {
+      flex-direction: column;
+      justify-content: end;
+    }
+
+    > div:last-child {
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .video {
+    position: fixed;
+    width: 100%;
+    max-width: 575px;
+    left: 50%;
+    top: 50%;
+    transform: scale(0) translate(-50%, -50%);
+    transform-origin: top left;
+    transition: 0.2s;
+    max-height: 80dvh;
+    display: flex;
+    background-color: transparentize($color_bg, 0.3);
+    //overflow: hidden;
+    z-index: 1;
+
+    &::before {
+      @include pseudo-absolute {
+        width: 200vw;
+        height: 200vh;
+        left: -100%;
+        top: -100%;
+        background-color: transparentize($color_bg, 0.3);
+        z-index: 0;
+      }
+    }
+
+    &.active {
+      transform: scale(1) translate(-50%, -50%);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 2;
+    }
+
+    video {
+      height: 500px;
+      margin: 0 auto;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+    }
+  }
+}
+
+section.advantages {
+  box-shadow: $color-bg 0 0 20px 14px;
+  position: relative;
+
+  .container {
+    .list {
+      display: flex;
+      gap: $gap-lg;
+
+      .item {
+        position: relative;
+        min-height: 300px;
+        padding: 40px;
+        background-color: $color_secondary;
+        border-radius: 2px;
+        cursor: default;
+        transition: all 0.2s;
+        overflow: hidden;
+
+        .icon {
+          width: 40px;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        h4 {
+          font-size: 24px;
+          font-weight: 600;
+          color: $color_text-accent;
+        }
+
+        &::after {
+          @include pseudo-absolute {
+            bottom: -100%;
+            right: 10px;
+            width: 60px;
+            height: 60px;
+            background: var(--bg-icon);
+            transition: all 0.2s;
+          }
+        }
+
+        &:hover {
+          background-color: $color_primary;
+          transform: scale(0.9);
+
+          &::after {
+            bottom: 10px;
+          }
+
+          p {
+            color: $color_text-accent;
+          }
+        }
+      }
+    }
+  }
+}
+
+section.about {
+  margin-top: 100px;
+  background-image: linear-gradient(110deg, $color_primary 30%, $color_bg 0%);
+  padding-bottom: 100px;
+
+  .container {
+    display: flex;
+    gap: $gap-lg;
+
+    > div:first-child {
+      max-width: 350px;
+      height: 575px;
+      flex-shrink: 0;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    h3 {
+      margin: 0;
+    }
+
+    .signature {
+      margin-bottom: 30px;
+
+      img {
+        width: 100%;
+        max-width: 200px;
+      }
+    }
+  }
+}
+
+section.gallery {
+  h3, h4 {
+    margin: 0;
+  }
+
+  h3 {
+    margin: 30px 0;
+
+    + p {
+      max-width: 400px;
+      text-align: center;
+    }
+  }
+
+  .g-list {
+    margin-top: 30px;
+    width: 100%;
+    height: 575px;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+
+    > img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.5);
+      transition: 0.3s;
+    }
+
+    > :not(.item:first-child) {
+      + img {
+        opacity: 0;
+        transform: scale(1.1);
+      }
+    }
+
+    .item {
+      height: 100%;
+      width: 100%;
+      cursor: pointer;
+      z-index: 1;
+
+      &:not(:first-child) {
+        border-left: 1px solid $color_text;
+      }
+
+      .title {
+        min-height: 130px;
+        padding: 20px;
+        @include flex-center;
+        font-size: 24px;
+        font-weight: 600;
+        text-transform: uppercase;
+        position: relative;
+        overflow: hidden;
+        color: $color_primary;
+        transition: all 0.2s;
+
+        span {
+          z-index: 1;
+        }
+
+        &::before {
+          @include pseudo-absolute {
+            height: 100%;
+            width: 100%;
+            top: -100%;
+            background-color: $color_primary;
+            transition: all 0.2s;
+          }
+        }
+      }
+
+      &:hover {
+        .title {
+          color: $color_text-accent;
+
+          &::before {
+            top: 0;
+          }
+        }
+
+        + img {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    }
+  }
+
+  .images {
+    display: none;
+  }
+}
+
+section.book {
+  padding-bottom: 100px;
+
+  .container {
+    form {
+      input {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.footer {
+  padding: 30px 0;
+  //background: no-repeat center / cover url("../assets/img/tattoo-artist-makes-a-tattoo.jpg");
+
+  .container {
+    display: flex;
+    gap: $gap-md;
+    justify-content: space-between;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+}

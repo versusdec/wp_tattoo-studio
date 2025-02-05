@@ -1,0 +1,255 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+.logo {
+  max-width: $width-logo;
+
+  img {
+    width: 100%;
+  }
+}
+
+.play-btn {
+  width: 90px;
+  height: 90px;
+  display: block;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+
+  &::before {
+    @include pseudo-absolute {
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 $color_primary;
+      left: 5px;
+      top: 5px;
+      width: calc(100% - 10px);
+      height: calc(100% - 10px);
+      animation: glow 3s infinite;
+    }
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    * {
+      stroke: $color_text-accent;
+      transition: all 0.2s;
+    }
+  }
+
+  &:hover {
+    svg * {
+      stroke: $color_primary;
+    }
+  }
+}
+
+button, .btn {
+  padding: 20px 40px;
+  font-size: 16px;
+  color: $color_text-accent;
+  border: 2px solid transparent;
+  text-transform: uppercase;
+  position: relative;
+  background-color: $color_primary;
+  font-weight: 500;
+  transition: all 0.2s;
+  text-shadow: 1px 1px 1px $color_bg;
+  display: inline-flex;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $color-text_accent;
+  }
+
+  &.secondary {
+    background-color: transparent;
+    color: $color_primary;
+    border-color: $color_primary;
+
+    &::before {
+      @include pseudo-absolute {
+        width: 0;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background-color: $color_primary;
+        transition: 0.2s;
+        z-index: -1;
+      }
+    }
+
+    &:hover {
+      color: $color_text-accent;
+
+      &::before {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.close-btn {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  cursor: pointer;
+
+  &::before, &::after {
+    @include pseudo-absolute {
+      width: 100%;
+      height: 2px;
+      background-color: $color_primary;
+      transform: rotate(45deg);
+      top: 50%;
+    }
+  }
+
+  &:hover {
+    &::before, &::after {
+      background-color: $color_accent;
+    }
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+}
+
+h4.title {
+  font-size: 22px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $color_primary;
+  padding-left: 30px;
+  position: relative;
+
+  h4 {
+    margin: 0;
+  }
+
+  &::before {
+    @include pseudo-absolute {
+      left: 4px;
+      top: 4px;
+      width: 18px;
+      height: 18px;
+      background: no-repeat center / contain url('../assets/img/icons/star-full.svg');
+      z-index: 1;
+    }
+  }
+}
+
+figure {
+  margin: 0;
+
+  figcaption {
+    position: relative;
+
+    &::before {
+      @include pseudo-absolute {
+        left: 0;
+        bottom: -10px;
+        width: 80%;
+        height: 2px;
+        background-color: $color_accent;
+      }
+    }
+  }
+}
+
+input {
+  &[type=text],
+  &[type=number],
+  &[type=password],
+  &[type=email],
+  &[type=search],
+  &[type=tel],
+  &[type=url] {
+    height: 64px;
+    background-color: $color_text-accent;
+  }
+}
+
+input {
+  &[type=text],
+  &[type=number],
+  &[type=password],
+  &[type=email],
+  &[type=search],
+  &[type=tel],
+  &[type=url],
+  textarea {
+    background: $color_text-accent;
+    color: $color_bg;
+    font-weight: 400;
+    font-size: 16px;
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+
+    &::-webkit-input-placeholder {
+      color: $color-text;
+    }
+
+    &::-moz-placeholder {
+      color: $color-text;
+    }
+
+    &:-ms-input-placeholder {
+      color: $color-text;
+    }
+
+    &::-ms-input-placeholder {
+      color: $color-text;
+    }
+
+    &::placeholder {
+      color: $color-text;
+    }
+
+    &.error {
+      color: $color_error;
+
+      &::-webkit-input-placeholder {
+        color: $color-error;
+      }
+
+      &::-moz-placeholder {
+        color: $color-error;
+      }
+
+      &:-ms-input-placeholder {
+        color: $color-error;
+      }
+
+      &::-ms-input-placeholder {
+        color: $color-error;
+      }
+
+      &:focus, &:active, &::placeholder {
+        color: $color-error;
+      }
+    }
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  appearance: none;
+  outline: none;
+}
+
+textarea {
+  resize: none;
+}
